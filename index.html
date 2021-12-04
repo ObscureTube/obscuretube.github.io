@@ -72,15 +72,19 @@ input:focus, textarea:focus, select:focus{
 	outline: none;
 }
 
+#about {
+	overflow-y: auto;
+}
+
 </style>
 <meta charset="UTF-8">
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="obscure.min.js"></script>
 </head>
 <body>
-	<div id="about" hidden style="font-color:#ebebeb;width:100%;position: absolute;z-index: 3;background-color:rgba(0, 0, 0, 0.85);padding: 150px;">
+	<div id="about" hidden style="font-color:#ebebeb;width:100%;position: absolute;z-index: 3;background-color:rgba(0, 0, 0, 0.85);padding: 150px 50px 50px 50px;">
 	<div style="font-size:45px;">About ObscureTube</div>
-	<br><br>
+	<br><br><br>
 	<div style="font-size:20px;">This website displays recent, low view count YouTube videos with names like IMG 1234, MOV 9876, or DSC 5678.
 	<br><br>
 	This site is similar to others that also display low view count videos, such as astronaut.io or petittube.com, but this site aims to add some functionality that I felt was missing from those. Using astronaut.io, I quickly found myself looping and watching the same videos again, and the feed was overrun by a handful of channels that were posting dozens or hundreds of times a day.
