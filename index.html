@@ -11,14 +11,14 @@
 html, body {
 	font-family: Andale Mono, monospace;
 	font-size: 18px;
-	background: #222;
-	color: #aaa;
+	background: #1f1f1e;
+	color: #ebebeb;
 	text-align: center;
 	margin: 0px;
 }
 
 a {
-	color: #aaa;
+	color: #ebebeb;
 }
 
 .playerWrapper {
@@ -27,12 +27,12 @@ a {
 
 .block {
 	font-size: 30px;
-	color: white;
+	color: #ebebeb;
 	font-weight: bold;
 	display: inline-block;
 	width: 50%;
 	border: none;
-	background-color: forestgreen;
+	background-color: #5B8C17;
 	padding: 14px 28px;
 	cursor: pointer;
 	text-align: center;
@@ -40,12 +40,12 @@ a {
 
 #copyLinkButton {
 	font-size: 18px;
-	color: white;
+	color: #ebebeb;
 	font-weight: bold;
 	display: inline-block;
 	width: 20%;
 	border: none;
-	background-color: darkblue;
+	background-color: #023F78;
 	padding: 4px 10px;
 	cursor: pointer;
 	text-align: center;
@@ -62,10 +62,14 @@ a {
 
 .autoSkip {
 	font-size: 25px;
-	color: tomato;
+	color: #fd6149;
 	font-weight: bold;
 	text-align: center;
 	cursor: pointer;
+}
+
+input:focus, textarea:focus, select:focus{
+	outline: none;
 }
 
 </style>
@@ -74,7 +78,7 @@ a {
 <script src="obscure.min.js"></script>
 </head>
 <body>
-	<div id="about" hidden style="font-color:white;width:100%;position: absolute;z-index: 3;background-color:rgba(0, 0, 0, 0.85);padding: 150px;">
+	<div id="about" hidden style="font-color:#ebebeb;width:100%;position: absolute;z-index: 3;background-color:rgba(0, 0, 0, 0.85);padding: 150px;">
 	<div style="font-size:45px;">About ObscureTube</div>
 	<br><br>
 	<div style="font-size:20px;">This website displays recent, low view count YouTube videos with names like IMG 1234, MOV 9876, or DSC 5678.
@@ -106,13 +110,13 @@ a {
 		watch them all again!<br> <br>
 	</div>
 	<div id="controls" hidden=true>
-		<span style="display:inline-block;width:10%;font-size: 18px;background-color:black;padding: 4px 10px;">Share:</span><input type="text" value="" id="videoLink"><button id="copyLinkButton" onclick="copyVideoLink()">Copy Video URL</button>
+		<span style="border-style:solid;border-color:black;border-width:4px 2px 2px 4px;display:inline-block;width:10%;font-size: 18px;background-color:black;padding: 4px 10px;">Share:</span><input style="border-style:solid;border-color:black;border-width:4px 2px 2px 2px;" type="text" value="" id="videoLink"><button style="border-style:solid;border-color:black;border-width:4px 4px 2px 2px;" id="copyLinkButton" onclick="copyVideoLink()">Copy Video URL</button>
 		<br>
-		<button style="border-style: solid;border-color:black;border-width:4px 0px 4px 4px;" class="block" onclick="prevSelect()">Previous Video</button><button style="border-style: solid;border-color:black;border-width:4px 0px 4px 4px;" class="block" onclick="nextSelect()">Next Video</button>
+		<button style="border-style: solid;border-color:black;border-width:2px 2px 2px 4px;" class="block" onclick="prevSelect()">Previous Video</button><button style="border-style: solid;border-color:black;border-width:2px 4px 2px 2px;" class="block" onclick="nextSelect()">Next Video</button>
 		<br>
-		<button class="block" style="background-color: darkred;width: 100%;border-style: solid;border-color:black;border-width:0px 4px 4px 4px;" onclick="blockChannel();">Block Channel (Never See Videos from Channel)<br><span style="font-size:18px;">There are <span id="channelCount">0</span> other videos from this channel in queue.</span></button>
+		<button class="block" style="background-color: darkred;width: 100%;border-style: solid;border-color:black;border-width:2px 4px 2px 4px;" onclick="blockChannel();">Block Channel (Never See Videos from Channel)<br><span style="font-size:18px;">There are <span id="channelCount">0</span> other videos from this channel in queue.</span></button>
 		<br>
-		<div style="border-style: solid; border-width: 0px 4px 4px 4px; border-color: black; padding: 14px 28px; width: 100%; display: inline-block;">
+		<div style="border-style: solid; border-width: 2px 4px 4px 4px; border-color: black; background:#2A2A28; padding: 14px 28px; width: 100%; display: inline-block;">
 			<span onclick="autoSkipClick()" class="autoSkip"><input
 				type="checkbox" id="autoSkipCheck"
 				style="width: 20px; height: 20px;"> Auto skip video every </span><input
@@ -130,7 +134,7 @@ a {
 	</div>
 	<div id="resetCache" hidden=true>
 		<button class="block"
-			style="background-color: darkred; width: 100%; font-size: 15px;"
+			style="border-style: solid; border-width: 4px 4px 4px 4px; border-color: black; background-color: #a21601; width: 100%; font-size: 15px;"
 			onclick="resetCache();">Reset Cache (Show All Videos Again)</button>
 	</div>
 </body>
