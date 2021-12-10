@@ -88,20 +88,21 @@ input:focus, textarea:focus, select:focus{
 <script src="obscure.min.js"></script>
 </head>
 <body>
+	<!-- About Section -->
 	<div id="about" hidden style="font-color:#ebebeb;width:100%;position: absolute;z-index: 3;background-color:rgba(0, 0, 0, 0.85);padding: 150px 50px 50px 50px;">
 	<div style="font-size:45px;">About ObscureTube</div>
 	<br><br><br>
 	<div style="font-size:20px;">This website displays recent, low view count YouTube videos with names like IMG 1234, MOV 9876, or DSC 5678.
 	<br><br>
-	This site is similar to others that also display low view count videos, such as astronaut.io or petittube.com, but this site aims to add some functionality that I felt was missing from those. Using astronaut.io, I quickly found myself looping and watching the same videos again, and the feed was overrun by a handful of channels that were posting dozens or hundreds of times a day.
+	This site is similar to others which display low view count videos, such as astronaut.io or petittube.com. But this site adds some functionality that I thought was missing from those. Using astronaut.io, I was soon watching the same videos over again, and the feed was overrun by a handful of channels posting dozens or hundreds of times a day.
 	<br><br>
 	Here, every video ID you see is cached in your cookies, so you should never see the same video twice. You also have the option to block channels from showing up entirely if you get tired of them. No data about your session is stored server side, and your experience can be refreshed by clearing your cookies or resetting your cache.
 	<br><br>
 	There's other features, such as customizable autoskip & options to share the site. More to come.
 	<br><br><br>
-	<button style="padding:15px;font-size:30px;opacity: 0.65;" onclick="toggleAbout()">Show Me the Videos</button>
+	<button style="padding:15px;font-size:30px;opacity: 0.65;" onclick="hideAbout()">Show Me the Videos</button>
 	<br><br>
-	<div id="header" style="font-size: 15px;"></div>
+	<div id="queueCount" style="font-size: 15px;"></div>
 	<br><br>
 	Contact: <script TYPE="text/javascript">
 		emailE = 'outlook.com'
@@ -109,6 +110,26 @@ input:focus, textarea:focus, select:focus{
 		document.write('<a href="mailto:' + emailE + '">' + emailE + '</a>')
 	</script>
 	</div></div>
+	<!-- End of About -->
+	<!-- Context Section -->
+	<div id="about" hidden style="font-color:#ebebeb;width:100%;position: absolute;z-index: 3;background-color:rgba(0, 0, 0, 0.85);padding: 150px 50px 50px 50px;">
+	<div style="font-size:45px;">What did I just watch?</div>
+	<br><br><br>
+	<div style="font-size:20px;">You just watched an obscure YouTube video.
+	<br><br>
+	Daily, this site generates a queue of recent, obscure YouTube videos (or videos with obscure names and a very low viewcount). Head back to the homepage to see more.
+	<br><br><br>
+	<button style="padding:15px;font-size:30px;opacity: 0.65;" onclick="redirectToHome())">Show Me More</button>
+	<br><br>
+	<div id="queueCount" style="font-size: 15px;"></div>
+	<br><br>
+	Contact: <script TYPE="text/javascript">
+		emailE = 'outlook.com'
+		emailE = ('obscuretube' + '@' + emailE)
+		document.write('<a href="mailto:' + emailE + '">' + emailE + '</a>')
+	</script>
+	</div></div>
+	<!-- End of About -->
 	<div id="playerWrapper" hidden=true>
 		<div id="player"></div>
 	</div>
@@ -122,7 +143,7 @@ input:focus, textarea:focus, select:focus{
 	<div id="controls" hidden=true>
 		<span style="border-style:solid;border-color:black;border-width:4px 2px 2px 4px;display:inline-block;width:10%;font-size: 18px;background-color:black;padding: 4px 10px;">Share:</span><input style="border-style:solid;border-color:black;border-width:4px 2px 2px 2px;" type="text" value="" id="videoLink"><button style="border-style:solid;border-color:black;border-width:4px 4px 2px 2px;" id="copyLinkButton" onclick="copyVideoLink()">Copy URL</button>
 		<br>
-		<button style="border-style: solid;border-color:black;border-width:2px 2px 2px 4px;" class="block" onclick="prevSelect()">Previous Video</button><button style="border-style: solid;border-color:black;border-width:2px 4px 2px 2px;" class="block" onclick="nextSelect()">Next Video</button>
+		<button style="border-style: solid;border-color:black;border-width:2px 2px 2px 4px;" class="block" onclick="prevSelect()">Previous Video</button><button style="border-style: solid;border-color:black;border-width:2px 4px 2px 2px;" class="block" onclick="nextClicked()">Next Video</button>
 		<br>
 		<button class="block" style="background-color: darkred;width: 100%;border-style: solid;border-color:black;border-width:2px 4px 2px 4px;" onclick="blockChannel();">Block Channel (Never See Videos from Channel)<br><span style="font-size:18px;">There are <span id="channelCount">0</span> other videos from this channel in queue.</span></button>
 		<br>
