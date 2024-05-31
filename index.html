@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCVR4Q5E7Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CCVR4Q5E7Y');
+</script>
+<title>ObscureTube</title>
+<meta name="description" content="ObscureTube is a feed of the most obscure, low viewcount & recent YouTube videos." />
+<meta name="keywords" content="obscure, tube, obscuretube, obscure tube, low, viewcount, random, youtube, videos, astronaut.io, incognitube, petittube" />
+<meta property="og:title" content="ObscureTube" />
+<meta property="og:description" content="Obscure videos on https://obscuretube.com" />
+<meta property="og:image" content="https://obscuretube.com/icon.png" />
+<meta property="og:url" content="https://obscuretube.com" />
+<style>
+/* fix for margins adding up to more than 100% and going to next line */
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	font-family: Andale Mono, monospace;
+	font-size: 18px;
+	background: #1f1f1e;
+	color: #ebebeb;
+	text-align: center;
+	margin: 0px;
+}
+
+a {
+	color: #ebebeb;
+}
+
+.playerWrapper {
+	
+}
+
+.block {
+	font-size: 30px;
+	color: #ebebeb;
+	font-weight: bold;
+	display: inline-block;
+	width: 50%;
+	border: none;
+	background-color: #5B8C17;
+	padding: 14px 28px;
+	cursor: pointer;
+	text-align: center;
+}
+
+#copyLinkButton {
+	font-size: 18px;
+	color: #ebebeb;
+	font-weight: bold;
+	display: inline-block;
+	width: 20%;
+	border: none;
+	background-color: #023F78;
+	padding: 4px 10px;
+	cursor: pointer;
+	text-align: center;
+}
+
+#videoLink {
+	font-size: 18px;
+	display: inline-block;
+	width: 70%;
+	border: none;
+	padding: 4px 10px;
+	text-align: center;
+}
+
+.autoSkip {
+	font-size: 25px;
+	color: #fd6149;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
+}
+
+input:focus, textarea:focus, select:focus{
+	outline: none;
+}
+
+#about {
+	overflow-y: auto;
+}
+
+</style>
+<meta charset="UTF-8">
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="obscure.min.js"></script>
+</head>
+<body>
+	<!-- About Section -->
+	<div id="about" hidden style="font-color:#ebebeb;width:100%;position: absolute;z-index: 3;background-color:rgba(0, 0, 0, 0.85);padding: 150px 50px 50px 50px;">
+	<div style="font-size:45px;">About ObscureTube</div>
+	<br><br><br>
+	<div style="font-size:20px;">ObscureTube displays recent, low view count YouTube videos with names like IMG 1234, MOV 9876, or DSC 5678.
+	<br><br>
+	This site is similar to others which display low view count videos, such as astronaut.io or petittube.com, but adds some functionality that I thought was missing from those. Using astronaut.io, I was soon watching the same videos over again, and the feed was overrun by a handful of channels posting dozens or hundreds of times a day.
+	<br><br>
+	Here, every video ID you see is cached in your cookies, so you should never see the same video twice. You also have the option to block channels from showing up entirely if you get tired of them, and your experience can be refreshed by clearing your cookies or resetting your cache.
+	<br><br>
+	There's other features, such as customizable autoskip & options to share the site. More to come.
+	<br><br><br>
+	<button style="padding:15px;font-size:30px;opacity: 0.65;" onclick="hideAbout()">Show Me the Videos</button>
+	<br><br><br>
+	<div id="queueCount" style="font-size: 15px;"></div>
+	<br><br>
+	Contact: <script TYPE="text/javascript">
+		emailE = 'obscuretube.com'
+		emailE = ('contact' + '@' + emailE)
+		document.write('<a href="mailto:' + emailE + '">' + emailE + '</a>')
+	</script>
+	</div></div>
+	<!-- End of About -->
+	<!-- Context Section -->
+	<div id="sharedContext" hidden style="font-color:#ebebeb;width:100%;position: absolute;z-index: 3;background-color:rgba(0, 0, 0, 0.90);padding: 200px 100px 50px 100px;">
+	<div style="font-size:45px;">What did I just watch?</div>
+	<br><br><br>
+	<div style="font-size:20px;">You just watched an obscure tube video.
+	<br><br><br>
+	Daily, ObscureTube generates a queue of recent, obscure YouTube videos (or videos with obscure names and a very low viewcount).
+	<br><br>
+	Head back to the homepage to see more.
+	<br><br><br>
+	<button style="padding:15px;font-size:30px;opacity: 0.65;" onclick="redirectToHome()">To the Homepage!</button>
+	</div></div>
+	<!-- End of About -->
+	<div id="playerWrapper" hidden=true>
+		<div id="player"></div>
+	</div>
+	<div id="done" hidden=true>
+		<h1>You've watched every video in the queue!</h1>
+		YouTube's API provides this website a few hundred video results per
+		day and you've seen them all! The video queue should be refreshed with
+		new videos soon, or click "Reset Cache" at the bottom of the page to
+		watch them all again!<br> <br>
+	</div>
+	<div id="controls" hidden=true>
+		<span style="border-style:solid;border-color:black;border-width:4px 2px 2px 4px;display:inline-block;width:10%;font-size: 18px;background-color:black;padding: 4px 10px;">Share:</span><input style="border-style:solid;border-color:black;border-width:4px 2px 2px 2px;" type="text" value="" id="videoLink"><button style="border-style:solid;border-color:black;border-width:4px 4px 2px 2px;" id="copyLinkButton" onclick="copyVideoLink()">Copy URL</button>
+		<br>
+		<button style="border-style: solid;border-color:black;border-width:2px 2px 2px 4px;" class="block" onclick="prevSelect()">Previous Video</button><button style="border-style: solid;border-color:black;border-width:2px 4px 2px 2px;" class="block" onclick="nextClicked()">Next Video</button>
+		<br>
+		<button class="block" style="background-color: darkred;width: 100%;border-style: solid;border-color:black;border-width:2px 4px 2px 4px;" onclick="blockChannel();">Block Channel (Never See Videos from Channel)<br><span style="font-size:18px;">There are <span id="channelCount">0</span> other videos from this channel in queue.</span></button>
+		<br>
+		<div style="border-style: solid; border-width: 2px 4px 4px 4px; border-color: black; background:#2A2A28; padding: 14px 28px; width: 100%; display: inline-block;">
+			<span onclick="autoSkipClick()" class="autoSkip"><input
+				type="checkbox" id="autoSkipCheck"
+				style="width: 20px; height: 20px;"> Auto skip video every </span><input
+				style="font-size: 25px;" maxlength="3" size="1" type="text"
+				id="autoSkipVal" value="8" disabled><span
+				onclick="autoSkipClick()" class="autoSkip"> seconds.</span>
+		</div>
+		<br><br>
+		<div style="font-size: 25px;">
+			<b> Keyboard Controls: <br> Left Arrow (Previous), Right
+				Arrow (Next), B (Block Channel), A (Autoskip Toggle)
+			</b>
+		</div>
+		<br> <br>
+	</div>
+	<div id="resetCache" hidden=true>
+		<button class="block"
+			style="border-style: solid; border-width: 4px 4px 4px 4px; border-color: black; background-color: #a21601; width: 100%; font-size: 15px;"
+			onclick="resetCache();">Reset Cache (Show All Videos Again)</button>
+	</div>
+</body>
+</html>
